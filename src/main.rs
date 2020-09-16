@@ -29,16 +29,16 @@ fn main() {
         ),
     };
 
-    let minimal_cidr = IpV4Cidr {
+    let cidr_to_print = IpV4Cidr {
         first: cidr.first_as_ip_addr().to_string(),
         last: cidr.last_as_ip_addr().to_string(),
         size: cidr.size().to_str_radix(10).parse().unwrap(),
     };
 
-    let serialized = serde_json::to_string(&minimal_cidr);
+    let serialized = serde_json::to_string(&cidr_to_print);
     let serialized = match serialized {
         Ok(d) => d,
-        Err(e) => panic!("Failed to deserialize {:?}", e),
+        Err(e) => panic!("Failed to serialize {:?}", e),
     };
     println!("{}", serialized);
 }
